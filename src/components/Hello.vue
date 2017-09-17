@@ -1,25 +1,24 @@
 
 <template>
   <div class="body">
-    <h1>Stumptown Coffee</h1>
 
-    <form v-on:submit= "submit">
+    <form id = "option-form" v-on:submit= "submit">
       <div id = "selection">
         <p>What type of day is it?</p>
-        <div class = "button-set">
-          <input id = "chill" name = "day" value = "Chill"  type = "radio" v-model = "optionOne">
-          <label class = "btn-image chill bounce" for = "chill"></label>
+        <div class = "btn-set">
+          <input class = "btn-option" id = "chill" value = "Chill" type = "radio" v-model = "optionOne">
+          <label class = "btn-image chill" for = "chill"></label>
 
-          <input id = "productive" name = "day" value = "Productive"  type = "radio" v-model = "optionOne">
+          <input  class = "btn-option" id = "productive" value = "Productive"  type = "radio" v-model = "optionOne">
           <label class = "btn-image productive" for = "productive"></label>
         </div>
 
         <p>Feeling adventurous?</p>
-        <div class = "button-set">
-          <input checked = "checked" id = "stay" name = "distance" value = "Stay"  type = "radio" v-model = "optionTwo">
+        <div class = "btn-set">
+          <input class = "btn-option" id = "stay" value = "Stay"  type = "radio" v-model = "optionTwo">
           <label class = "btn-image stay" for = "stay"></label>
 
-          <input id = "go" name = "distance" value = "Go"  type = "radio" v-model = "optionTwo">
+          <input class = "btn-option" id = "go" value = "Go" type = "radio" v-model = "optionTwo">
           <label class = "btn-image go" for = "go"></label>
         </div>
 
@@ -32,8 +31,7 @@
       </button>
     </form>
 
-    <div id="instafeed">
-    </div>
+  
 
 
 
@@ -41,13 +39,13 @@
 </template>
 
 <script>
-import Instafeed from 'instafeed.js'
 
 let query = "coffee nice atmosphere";
 
 export default {
   name: 'hello',
   data () {
+
     return {
       optionOne: "Chill",
       optionTwo: "Stay"
@@ -70,43 +68,37 @@ export default {
     }
   }
 }
- var feed = new Instafeed({
-       get: 'tagged',
-       tagName: 'awesome',
-       clientId: '53726708.1677ed0.de68285baef341d580f7b9ea226cf534'
-   });
-   feed.run();
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang = "scss" scoped>
+
+@import "./src/assets/styles/vars.scss";
+
 @keyframes pulse {
   from {
     transform: scale3d(1, 1, 1);
   }
 
   50% {
-    transform: scale3d(1.05, 1.05, 1.05);
+    transform: scale3d(1.1, 1.1, 1.1);
   }
 
   to {
     transform: scale3d(1, 1, 1);
   }
 }
-
-.body {
-  align-self: center;
-
-  max-width: 1024px;
+#option-form {
+  width: 90%;
   display: flex;
   flex-direction: column;
-  align-items: center;
 
+  @include desktop {
+    width: 512px;
+  }
 }
 
 #selection {
-  width: 800px;
-
   input {
     -webkit-appearance:none;
      -moz-appearance:none;
@@ -119,12 +111,15 @@ export default {
        -moz-filter: none;
             filter: none;
   }
-
 }
 
-.button-set {
+/*Styles option buttons*/
+
+.btn-set {
   display: flex;
   justify-content: space-between;
+  margin-top: 32px;
+  margin-bottom: 16px;
 }
 
 .btn-image {
@@ -134,21 +129,25 @@ export default {
   display:inline-block;
   width:108px;
   height: 108px;
-  -webkit-transition: all 300ms ease-in;
-        -moz-transition: all 300ms ease-in;
-             transition: all 300ms ease-in;
+  -webkit-transition: all 250ms ease-in;
+        -moz-transition: all 250ms ease-in;
+             transition: all 250ms ease-in;
      -webkit-filter: brightness(1.5) grayscale(1) opacity(.5);
         -moz-filter: brightness(1.5) grayscale(1) opacity(.5);
              filter: brightness(1.5) grayscale(1) opacity(.5);
+
 
   &:hover, &:active {
     -webkit-filter: brightness(1) grayscale(0) opacity(.5);
        -moz-filter: brightness(1) grayscale(0) opacity(.5);
             filter: brightness(1) grayscale(0) opacity(.5);
   }
-  &:not(:active){
+
+  &:not(:active) {
     animation: pulse 1s;
   }
+
+
 }
 
 .chill {

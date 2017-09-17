@@ -12,19 +12,12 @@ export default {
 </script>
 
 <style lang = "scss">
+
+@import "./src/assets/styles/vars.scss";
+
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600');
 @import url('https://fonts.googleapis.com/css?family=Playfair+Display:900');
 
-/* Variables */
-
-$sans-serif: 'Open Sans', sans-serif;
-$serif: 'Playfair Display', serif;
-$black: #000;
-$white: #fff;
-$off-black: #333;
-$gray: #BBBBBB;
-$primary: #119AF7;
-$secondary: #FA1821;
 
 /* reset */
 
@@ -85,8 +78,13 @@ html {
 /* Typography */
 h1{
   font-family: $serif;
-  font-size: 72px;
+  font-size: 48px;
   font-weight: 900;
+  text-align: center;
+
+  @include desktop {
+    font-size: 72px
+  }
 }
 
 p {
@@ -121,6 +119,18 @@ p {
   }
 }
 
+.body {
+  align-self: center;
+  min-width: 288px;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/*Button styling*/
+
+/*Styles general buttons*/
 .btn-primary {
   height: 48px;
   width: 192px;
@@ -130,6 +140,7 @@ p {
   border-radius: 2px;
   border: 2px solid $primary;
   text-align: center;
+  align-self: center;
 
   transform: translateY(0px);
   transition: all .3s ease;

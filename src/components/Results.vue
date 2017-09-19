@@ -4,9 +4,30 @@
 
 <script>
 
+import { mapActions, mapGetters } from 'vuex'
+
 
 
 export default {
-  name: 'Results'
+  name: 'Results',
+  data () {
+    return {
+      optionOne: "Chill",
+      optionTwo: "Stay",
+      coordinates: "he"
+    }
+  },
+  computed: {
+    ...mapGetters([
+      'getQuery',
+      'getCoord'
+    ])
+  },
+  methods: {
+    ...mapActions([
+      'updateQuery',
+      'updateCoord'
+    ])
+  }
 }
 </script>

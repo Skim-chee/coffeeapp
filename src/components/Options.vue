@@ -48,11 +48,6 @@ export default {
       coordinates: "he"
     }
   },
-  computed: {
-    ...mapGetters([
-      'getQuery'
-    ])
-  },
   methods: {
     ...mapActions([
       'updateQuery',
@@ -69,9 +64,9 @@ export default {
     submit: function(e){
       e.preventDefault();
       if (this.$data.optionOne == "Chill") {
-        this.updateQuery("coffee, wifi, outlets");
-      } else {
         this.updateQuery("coffee nice atmosphere");
+      } else {
+        this.updateQuery("coffee, wifi, outlets");
       }
 
       if (this.$data.optionTwo == "Stay") {

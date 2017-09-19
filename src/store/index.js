@@ -41,7 +41,7 @@ const store = new Vuex.Store({
       context.commit('update_query', desc)
     },
 
-    updateCoord (context, pos) {
+    updateCoords (context, pos) {
       if (pos == "getNew") {
         getPosition(function (coords) {
           pos = coords;

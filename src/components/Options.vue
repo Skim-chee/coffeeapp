@@ -51,7 +51,7 @@ export default {
   methods: {
     ...mapActions([
       'updateQuery',
-      'updateCoord'
+      'updateCoords'
     ]),
     getPosition: function(callback) {
       navigator.geolocation.watchPosition(
@@ -70,10 +70,10 @@ export default {
       }
 
       if (this.$data.optionTwo == "Stay") {
-        this.updateCoord("getNew");
+        this.updateCoords("getNew");
         // this.updateCoord(pos);
       } else {
-        this.updateCoord("-74.013004303,40.6320631246|-73.8527584076,40.7759918046");
+        this.updateCoords("-74.013004303,40.6320631246|-73.8527584076,40.7759918046");
       }
 
       this.$router.push('/results');

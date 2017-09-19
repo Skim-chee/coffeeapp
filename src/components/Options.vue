@@ -1,6 +1,6 @@
 
 <template>
-  <div class="body">
+  <div id = "options" class="body">
 
     <form id = "option-form" v-on:submit= "submit">
       <div id = "selection">
@@ -23,7 +23,6 @@
         </div>
 
         <span> Checked: {{ optionOne }}, {{ optionTwo }} </span>
-
       </div>
 
       <button class = "btn-primary" type = "submit" value = "FIND CAFE">
@@ -31,40 +30,58 @@
       </button>
     </form>
 
-  
-
-
-
   </div>
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
 
-let query = "coffee nice atmosphere";
+// Called by geolocater to get the coordinates and update
+// var:location with the latitude and longitude
 
 export default {
-  name: 'hello',
+  name: 'Options',
   data () {
-
     return {
       optionOne: "Chill",
-      optionTwo: "Stay"
+      optionTwo: "Stay",
+      coordinates: "he"
     }
   },
+  computed: {
+    ...mapGetters([
+      'getQuery'
+    ])
+  },
   methods: {
-    submit: function(){
+    ...mapActions([
+      'updateQuery',
+      'updateCoord'
+    ]),
+    getPosition: function(callback) {
+      navigator.geolocation.watchPosition(
+        function (position) {
+          var pos = position.coords.latitude + "," + position.coords.longitude;
+          callback(pos);
+        }
+      )
+    },
+    submit: function(e){
+      e.preventDefault();
       if (this.$data.optionOne == "Chill") {
-
+        this.updateQuery("coffee, wifi, outlets");
       } else {
-        query = "coffee wifi outlets";
-
+        this.updateQuery("coffee nice atmosphere");
       }
 
       if (this.$data.optionTwo == "Stay") {
-
+        this.updateCoord("getNew");
+        // this.updateCoord(pos);
       } else {
-
+        this.updateCoord("-74.013004303,40.6320631246|-73.8527584076,40.7759918046");
       }
+
+      this.$router.push('/results');
     }
   }
 }

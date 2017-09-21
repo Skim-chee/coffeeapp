@@ -34,33 +34,25 @@
 </template>
 
 <script>
+import axios from 'axios';
+import siteConfig from '../assets/mixins/siteConfig.js';
 import { mapActions, mapGetters } from 'vuex'
-
-// Called by geolocater to get the coordinates and update
-// var:location with the latitude and longitude
 
 export default {
   name: 'Options',
   data () {
     return {
       optionOne: "Chill",
-      optionTwo: "Stay",
-      coordinates: "he"
+      optionTwo: "Stay"
     }
   },
+  mixins: [ siteConfig ],
   methods: {
     ...mapActions([
       'updateQuery',
-      'updateCoords'
+      'updateCoords',
+      'updateToken'
     ]),
-    getPosition: function(callback) {
-      navigator.geolocation.watchPosition(
-        function (position) {
-          var pos = position.coords.latitude + "," + position.coords.longitude;
-          callback(pos);
-        }
-      )
-    },
     submit: function(e){
       e.preventDefault();
       if (this.$data.optionOne == "Chill") {
@@ -77,7 +69,25 @@ export default {
       }
 
       this.$router.push('/results');
+    },
+    yelpAuth: function() {
+      // Data passed into axios to gain yelp access token
+      let formData = new FormData();
+      formData.append('client_id', this.yelpKey);      formData.append('client_secret', this.yelpSecret);
+      formData.append('grant_type', 'client_credentials');
+
+
+      axios.post('https://api.yelp.com/oauth2/token', formData)
+      .then(response => {
+        this.updateToken(response.data.access_token);
+      })
+      .catch(e => {
+        console.log(e);
+      });
     }
+  },
+  mounted () {
+    this.yelpAuth();
   }
 }
 </script>

@@ -1,49 +1,67 @@
 <template>
+  <div>
   <div>HEY ITS ME MR MEESEICS</div>
+  <p>{{ yelpSearch() }} </p>
+  </div>
 </template>
 
 <script>
-
+import axios from 'axios';
 import { mapActions, mapGetters } from 'vuex';
 import siteConfig from '../assets/mixins/siteConfig.js';
 
-function facebookSearch() {
-  FB.api(
-    '/search',
-    'GET',
-    {"type":"place","q":"cafe","center":"40.7304,-73.9921","distance":"1000","fields":"name,id","access_token":"2001020613450573|2f8847a44f310a21fc0f5635cfd63618"},
-    function(response) {
-      // alert(JSON.stringify(response));
-    }
-  );
-}
-window.onload = function() {
-  facebookSearch();
-}
+// function facebookSearch() {
+//   FB.api(
+//     '/search',
+//     'GET',
+//     {"type":"place","q":"cafe","center":"40.7304,-73.9921","distance":"1000","fields":"name,id","access_token": this.fbKey|this.fbSecret},
+//     function(response) {
+//       alert(JSON.stringify(response));
+//     }
+//   );
+// }
+// window.onload = function() {
+//   facebookSearch();
+// }
 
 // console.log(fbKey);
+//
+// &client_id=' +
+// this.yelpKey + '&client_secret=' + this.yelpSecret
 
 export default {
   name: 'Results',
   mixins: [ siteConfig ],
   data () {
     return {
-      optionOne: "Chill",
-      optionTwo: "Stay",
-      coordinates: "he",
+      yelpResults: [],
+      fbResults: [],
+      yelpToken: ""
     }
   },
   computed: {
     ...mapGetters([
       'getQuery',
-      'getCoords'
+      'getCoords',
+      'getToken'
     ])
   },
   methods: {
     ...mapActions([
-      'updateQuery',
-      'updateCoords'
-    ])
+
+    ]),
+    yelpSearch: function () {
+      axios.get('https://api.yelp.com/v3/businesses/search',{
+      headers: {
+        'Authorization' : 'Bearer ' + this.getToken
+      }})
+      .then(response => {
+
+      })
+      .catch(e => {
+        console.log(e);
+      });
+    }
   }
 }
 </script>

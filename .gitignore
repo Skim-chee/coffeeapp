@@ -6,6 +6,7 @@ yarn-debug.log*
 yarn-error.log*
 app-env
 src/assets/mixins/siteConfig.js
+.env
 
 # Editor directories and files
 .idea

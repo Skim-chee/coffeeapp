@@ -35,7 +35,6 @@
 
 <script>
 import axios from 'axios';
-import siteConfig from '../assets/mixins/siteConfig.js';
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
@@ -46,12 +45,11 @@ export default {
       optionTwo: "Stay"
     }
   },
-  mixins: [ siteConfig ],
   methods: {
     ...mapActions([
       'updateQuery',
       'updateCoords',
-      'updateToken'
+      'updateStay'
     ]),
     submit: function(e){
       e.preventDefault();
@@ -62,10 +60,12 @@ export default {
       }
 
       if (this.$data.optionTwo == "Stay") {
+        // Makes a call to getNew function in server request
         this.updateCoords("getNew");
-        // this.updateCoord(pos);
+        this.updateStay(true);
       } else {
-        this.updateCoords("-74.013004303,40.6320631246|-73.8527584076,40.7759918046");
+        this.updateCoords("40.725925,-73.909149");
+        this.updateStay(false);
       }
 
       this.$router.push('/results');

@@ -27,8 +27,8 @@ function getPosition (callback) {
 const store = new Vuex.Store({
   state: {
     query : "coffee nice atmosphere",
-    location: "-74.013004303,40.6320631246|-73.8527584076,40.7759918046",
-    yelpToken: ""
+    location: "40.725925,-73.909149",
+    stay: true
   },
   mutations: {
     update_query (state, desc) {
@@ -37,8 +37,12 @@ const store = new Vuex.Store({
     update_coord (state, pos) {
       state.location = pos
     },
-    update_token (state, token) {
-      state.yelpToken = token
+    update_stay (state, s) {
+      if (s == true) {
+        state.stay = true;
+      } else {
+        state.stay = false;
+      }
     }
   },
   actions: {
@@ -56,8 +60,8 @@ const store = new Vuex.Store({
         context.commit('update_coord', pos)
       }
     },
-    updateToken (context, token) {
-      context.commit('update_token', token)
+    updateStay (context, s) {
+      context.commit('update_stay', s)
     }
   },
   getters: {
@@ -67,8 +71,8 @@ const store = new Vuex.Store({
     getCoords(state) {
       return state.location
     },
-    getToken(state) {
-      return state.yelpToken
+    getStay(state) {
+      return state.stay
     }
   },
   // Allows the state to persist through refresh by setting cookies

@@ -13,16 +13,16 @@ router.post('/fbSearch', (req, res) => {
   graph.setAppSecret(process.env.FB_SECRET);
   graph.setVersion('2.10');
 
+  // Gets first part of name to prevent name mismatches between yelp and graphAPI
   let name = req.body.data.name.split(" ")[0];
   let coords = req.body.data.coords;
   let imageURLS = [];
-  console.log(name);
 
   var searchOptions = {
     q: name,
     type: 'place',
     center: coords,
-    distance: 1500
+    distance: 500
   }
 
   let idResult;

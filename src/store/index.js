@@ -78,10 +78,8 @@ const store = new Vuex.Store({
   // Allows the state to persist through refresh by setting cookies
   plugins: [
     createPersistedState({
-      stoage: {
-        getItem: key => Cookies.getJSON(key),
-        setItem: (key, value) => Cookies.set(key, value, { expires: 3, secure: true})
-      }
+      getItem: key => Cookies.getJSON(key),
+      setItem: (key, value) => Cookies.set(key, value, { expires: 3, secure: true})
   })]
 
 })

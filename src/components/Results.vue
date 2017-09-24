@@ -47,9 +47,6 @@ export default {
     ])
   },
   methods: {
-    ...mapActions([
-
-    ]),
     yelpSearch: function () {
       axios.post('http://localhost:4000/yelpSearch',{
       data: {
@@ -125,11 +122,11 @@ export default {
     justify-content: space-between;
 
     width: 100%;
-    max-width: 616px;
     margin-top: 16px;
 
     @include desktop {
       flex-direction: row;
+      width: 616px;
     }
 
     button {

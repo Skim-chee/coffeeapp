@@ -49,12 +49,16 @@
 import axios from 'axios';
 import { mapActions, mapGetters } from 'vuex'
 
+// Holds state of option to allow persistance
+var optOne = "Chill";
+var optTwo = "Stay";
+
 export default {
   name: 'Options',
   data () {
     return {
-      optionOne: "Chill",
-      optionTwo: "Stay"
+      optionOne: optOne,
+      optionTwo: optTwo
     }
   },
   methods: {
@@ -66,16 +70,20 @@ export default {
     submit: function(e){
       e.preventDefault();
       if (this.$data.optionOne == "Chill") {
+        optOne = "Chill";
         this.updateQuery("coffee, atmosphere");
       } else {
+        optOne = "Productive";
         this.updateQuery("coffee, wifi, outlets, study");
       }
 
       if (this.$data.optionTwo == "Stay") {
-        // Makes a call to getNew function in server request
+        optTwo = "Stay";
+        // Makes a call to getNew function for server request
         this.updateCoords("getNew");
         this.updateStay(true);
       } else {
+        optTwo = "Go";
         this.updateCoords("40.725925,-73.909149");
         this.updateStay(false);
       }

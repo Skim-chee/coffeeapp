@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <img id = "logo" src="./assets/logo@2x.png">
+    <img v-on:click="goHome" id = "logo" src="./assets/logo@2x.png">
     <router-view></router-view>
 
     <footer>
@@ -31,7 +31,12 @@
 
 
 export default {
-  name: 'app'
+  name: 'app',
+  methods: {
+    goHome: function(){
+      this.$router.push('/');
+    }
+  }
 }
 </script>
 
@@ -140,22 +145,29 @@ p {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  width: 100%;
-
   @include flexbox();
-
   flex-direction: column;
   margin-top: 24px;
+  width: 100%;
+
+  @include desktop {
+    margin-top: 48px;
+  }
+
 
   #logo {
     height: 148px;
     align-self: center;
+    cursor: pointer;
+    @include desktop {
+      margin-bottom: 32px;
+    }
   }
 }
 
 .body {
   align-self: center;
-  min-width: 288px;
+  min-width: 312px;
   max-width: 800px;
   @include flexbox();
   flex-direction: column;
@@ -170,6 +182,7 @@ p {
   width: 192px;
   margin-top: 48px;
   margin-bottom: 24px;
+  cursor: pointer;
 
   @include desktop {
     height: 64px;

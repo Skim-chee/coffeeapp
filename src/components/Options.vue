@@ -6,20 +6,34 @@
       <div id = "selection">
         <p>What type of day is it?</p>
         <div class = "btn-set">
-          <input class = "btn-option" id = "chill" value = "Chill" type = "radio" v-model = "optionOne">
-          <label class = "btn-image chill" for = "chill"></label>
-
-          <input  class = "btn-option" id = "productive" value = "Productive"  type = "radio" v-model = "optionOne">
-          <label class = "btn-image productive" for = "productive"></label>
+          <div class = "btn-option" >
+            <input id = "chill" value = "Chill" type = "radio" v-model = "optionOne">
+            <label class = "btn-image chill" for = "chill"></label>
+            <h2> Chill </h2>
+            <p> nice atmosphere </p>
+          </div>
+          <div class = "btn-option">
+            <input id = "productive" value = "Productive"  type = "radio" v-model = "optionOne">
+            <label class = "btn-image productive" for = "productive"></label>
+            <h2> Productive </h2>
+            <p> wifi + outlets </p>
+          </div>
         </div>
 
         <p>Feeling adventurous?</p>
         <div class = "btn-set">
-          <input class = "btn-option" id = "stay" value = "Stay"  type = "radio" v-model = "optionTwo">
-          <label class = "btn-image stay" for = "stay"></label>
-
-          <input class = "btn-option" id = "go" value = "Go" type = "radio" v-model = "optionTwo">
-          <label class = "btn-image go" for = "go"></label>
+          <div class = "btn-option">
+            <input class = "btn-option" id = "stay" value = "Stay"  type = "radio" v-model = "optionTwo">
+            <label class = "btn-image stay" for = "stay"></label>
+            <h2> No </h2>
+            <p> let's stay near </p>
+          </div>
+          <div class = "btn-option">
+            <input class = "btn-option" id = "go" value = "Go" type = "radio" v-model = "optionTwo">
+            <label class = "btn-image go" for = "go"></label>
+            <h2> Yes </h2>
+            <p> let's explore </p>
+          </div>
         </div>
       </div>
 
@@ -52,9 +66,9 @@ export default {
     submit: function(e){
       e.preventDefault();
       if (this.$data.optionOne == "Chill") {
-        this.updateQuery("coffee nice atmosphere");
+        this.updateQuery("coffee, atmosphere");
       } else {
-        this.updateQuery("coffee, wifi, outlets");
+        this.updateQuery("coffee, wifi, outlets, study");
       }
 
       if (this.$data.optionTwo == "Stay") {
@@ -112,6 +126,13 @@ export default {
     -webkit-filter: none;
        -moz-filter: none;
             filter: none;
+    & + h2 {
+      color: $primary;
+      border-bottom: 2px solid $primary;
+      & + p {
+        color: $off-black;
+      }
+    }
   }
 }
 
@@ -122,6 +143,26 @@ export default {
   justify-content: space-between;
   margin-top: 32px;
   margin-bottom: 16px;
+}
+
+.btn-option {
+  @include flexbox();
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  h2, p {
+    color: $gray;
+  }
+  h2 {
+    margin-top: 8px;
+    border-bottom: 2px solid transparent;
+  }
+  p {
+    margin-top: 4px;
+    font-weight: 100;
+    font-size: 14px;
+    letter-spacing: .7px;
+  }
 }
 
 .btn-image {

@@ -126,7 +126,7 @@ export default {
 
     width: 100%;
     max-width: 616px;
-    margin-top: 24px;
+    margin-top: 16px;
 
     @include desktop {
       flex-direction: row;

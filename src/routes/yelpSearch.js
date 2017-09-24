@@ -46,10 +46,9 @@ router.post('/yelpSearch', (req, res) => {
       let randBus = randomGenerator(count);
 
       while (resVal === undefined) {
+        let randBusiness = resJson.businesses[randBus]
         // Only marks cafes with a 4 or higher rating
-        if (resJson.businesses[randBus].rating >= 4) {
-          console.log("Business: " + resJson.businesses[randBus].name);
-
+        if (randBusiness.rating >= 4) {
           // Returns the selected business name
           res.status(200).json(resJson.businesses[randBus]);
           resVal = resJson.businesses[randBus].name;

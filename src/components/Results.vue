@@ -1,7 +1,14 @@
 <template>
   <div class = "body">
     <h1 class = "result-header"> {{ yelpResult }}</h1>
-
+    <div class = "result-button-set">
+      <button class = "btn-primary" value = "YELP">
+        <a :href= "yelpURL" target = "_blank"> YELP </a>
+      </button>
+      <button class = "btn-primary" value = "MAP">
+        <a :href= "mapURL" target = "_blank"> MAP </a>
+      </button>
+    </div>
     <table>
       <tbody>
         <tr v-for = "image in imageResults">
@@ -27,6 +34,8 @@ export default {
   data () {
     return {
       yelpResult: "",
+      yelpURL: "",
+      mapURL: "",
       imageResults: []
     }
   },
@@ -50,6 +59,8 @@ export default {
       }})
       .then(response => {
         this.yelpResult = response.data.name;
+        this.yelpURL = response.data.url;
+        this.mapURL = "https://www.yelp.com/map/" + this.yelpURL.split('/')[4];
         let curCoords = response.data.coordinates.latitude + "," + response.data.coordinates.longitude;
         // uses resulting business name and location to pass to fbSearch
         axios.post('http://localhost:4000/fbSearch',{
@@ -79,21 +90,70 @@ export default {
 </script>
 
 <style lang = "scss" scoped>
+
+  @import "./src/assets/styles/vars.scss";
+
   .result-header {
     min-height: 96px;
   }
 
+  button a {
+    font-size: 17px;
+    font-weight: 600;
+    color: $primary;
+
+    &:visited, &:active {
+      color: $primary;
+    }
+    &:hover {
+      color: $white;
+    }
+
+    display: block;
+    height: 100%;
+    width: 100%;
+    line-height: 44px;
+
+    @include desktop {
+      line-height: 60px;
+    }
+  }
+
+  .result-button-set {
+    @include flexbox();
+    flex-direction: column;
+    justify-content: space-between;
+
+    width: 100%;
+    max-width: 616px;
+    margin-top: 24px;
+
+    @include desktop {
+      flex-direction: row;
+    }
+
+    button {
+      margin: 12px;
+    }
+  }
+
   tbody {
-    margin-top: 48px;
-
-
-    width: 600px;
-    height: 600px;
-    display: flex;
+    @include flexbox();
     flex-wrap: wrap;
 
+    margin-top: 24px;
+    width: 100%;
+    height: 100%;
+    min-height: 316px;
+
+    @include desktop {
+      margin-top: 48px;
+      width: 600px;
+      height: 600px;
+    }
+
     tr {
-      width: 33%;
+      width: 33.3%;
     }
     img {
       width: 100%;

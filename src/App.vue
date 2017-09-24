@@ -2,6 +2,28 @@
   <div id="app">
     <img id = "logo" src="./assets/logo@2x.png">
     <router-view></router-view>
+
+    <footer>
+      <div class = "footer-container">
+        <p class = "footer-info"> Made with <i id = "heart-emoji"></i> in New York </p>
+
+        <ul>
+          <li>
+            <a href = "https:sanminimal.com/portfolio" target = "_blank">Brewed for you by Seean Kim</a>
+          </li>
+          <li>
+            <a href = "https://github.com/Skim-chee/coffeeapp" target = "_blank">Taste the code at Github</a>
+          </li>
+          <li>
+            <a href = "https://twitter.com/home?status=For%20NY,%20the%20city%20never%20sleeps%20and%20neither%20should%20you%20(just%20kidding%20please%20sleep)%20https%3A//thecitythatneversleeps.me%20by%20%40Skim_chee" target = "_blank">Tweet a cup of joe
+            </a>
+          </li>
+          <li>
+            <a href = "https://www.facebook.com/sharer/sharer.php?u=https%3A//thecitythatneversleeps.me" target = "_blank">Spill the beans on Facebook</a>
+          </li>
+        </ul>
+      </div>
+    </footer>
   </div>
 </template>
 
@@ -77,15 +99,23 @@ html {
   color: $off-black;
 }
 
+body {
+  margin: 0;
+}
+
 /* Typography */
 h1{
   font-family: $serif;
   font-size: 48px;
   font-weight: 900;
   text-align: center;
+  line-height: 56px;
+  margin-top: 16px;
 
   @include desktop {
-    font-size: 72px
+    margin-top: 32px;
+    font-size: 72px;
+    line-height: 72px;
   }
 }
 
@@ -110,7 +140,9 @@ p {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  display: flex;
+  width: 100%;
+
+  @include flexbox();
 
   flex-direction: column;
   margin-top: 24px;
@@ -125,7 +157,7 @@ p {
   align-self: center;
   min-width: 288px;
   max-width: 800px;
-  display: flex;
+  @include flexbox();
   flex-direction: column;
   align-items: center;
 }
@@ -137,6 +169,13 @@ p {
   height: 48px;
   width: 192px;
   margin-top: 48px;
+  margin-bottom: 24px;
+
+  @include desktop {
+    height: 64px;
+    margin-top: 64px;
+    margin-bottom: 32px;
+  }
 
   background: $white;
   border-radius: 2px;
@@ -149,6 +188,7 @@ p {
 
   p {
     color: $primary;
+    font-size: 17px;
   }
 
   &:active, &:hover {
@@ -175,5 +215,50 @@ p {
   &:active, &:hover {
     background: $secondary;
   }
+}
+footer {
+  /*width: 300px;*/
+}
+.footer-container {
+  margin-top: 72px;
+  height: 320px;
+  background-color: $primary;
+  @include flexbox();
+  flex-direction: column;
+
+  ul {
+    padding: 0;
+    align-self: center;
+    list-style: none;
+    li {
+      margin: 8px 0;
+      transform: translateY(0px);
+      transition: all .3s ease;
+      &:hover {
+        transform: translateY(-3px);
+        transition: all .3s ease;
+      }
+    }
+    a {
+      font-size: 17px;
+      color: $white;
+
+      &:hover {
+        text-shadow: 0px 1px 1px #444444;
+      }
+    }
+  }
+}
+.footer-info {
+  align-self: center;
+  margin-top: 64px;
+  margin-bottom: 32px;
+}
+#heart-emoji {
+  width:24px;
+  height: 24px;
+  margin-right: 6px;
+  padding: 0 24px 0 0;
+  background: url('./assets/facebook-love.svg') center no-repeat;
 }
 </style>

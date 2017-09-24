@@ -21,8 +21,6 @@
           <input class = "btn-option" id = "go" value = "Go" type = "radio" v-model = "optionTwo">
           <label class = "btn-image go" for = "go"></label>
         </div>
-
-        <span> Checked: {{ optionOne }}, {{ optionTwo }} </span>
       </div>
 
       <button class = "btn-primary" type = "submit" value = "FIND CAFE">
@@ -94,7 +92,7 @@ export default {
 }
 #option-form {
   width: 90%;
-  display: flex;
+  @include flexbox();
   flex-direction: column;
 
   @include desktop {
@@ -120,7 +118,7 @@ export default {
 /*Styles option buttons*/
 
 .btn-set {
-  display: flex;
+  @include flexbox();
   justify-content: space-between;
   margin-top: 32px;
   margin-bottom: 16px;

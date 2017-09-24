@@ -69,25 +69,7 @@ export default {
       }
 
       this.$router.push('/results');
-    },
-    yelpAuth: function() {
-      // Data passed into axios to gain yelp access token
-      let formData = new FormData();
-      formData.append('client_id', this.yelpKey);      formData.append('client_secret', this.yelpSecret);
-      formData.append('grant_type', 'client_credentials');
-
-
-      axios.post('https://api.yelp.com/oauth2/token', formData)
-      .then(response => {
-        this.updateToken(response.data.access_token);
-      })
-      .catch(e => {
-        console.log(e);
-      });
     }
-  },
-  mounted () {
-    this.yelpAuth();
   }
 }
 </script>

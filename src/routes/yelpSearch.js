@@ -1,14 +1,7 @@
 var express = require('express'),
-       yelp = require('yelp-fusion'),
-      debug = require('debug');
+       yelp = require('yelp-fusion');
 var router = express.Router();
 
-
-var log = debug('app:log');
-// set this namespace to log via console.log
-log.log = console.log.bind(console);
-debug.log = console.info.bind(console);
-var error = debug('app:error');
 
 
 var client;

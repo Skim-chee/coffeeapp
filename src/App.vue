@@ -9,7 +9,7 @@
 
         <ul>
           <li>
-            <a href = "https:sanminimal.com/portfolio" target = "_blank">Brewed for you by Seean Kim</a>
+            <a href = "https://sanminimal.com/portfolio" target = "_blank">Brewed for you by Seean Kim</a>
           </li>
           <li>
             <a href = "https://github.com/Skim-chee/coffeeapp" target = "_blank">Taste the code at Github</a>

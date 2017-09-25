@@ -48,6 +48,8 @@ export default {
   },
   methods: {
     yelpSearch: function () {
+      // Local Post request:
+      //axios.post('http://localhost:4000/yelpSearch',{
       axios.post('https://thecitythatneversleeps.me/yelpSearch',{
       data: {
         query: this.getQuery,
@@ -60,6 +62,8 @@ export default {
         this.mapURL = "https://www.yelp.com/map/" + this.yelpURL.split('/')[4];
         let curCoords = response.data.coordinates.latitude + "," + response.data.coordinates.longitude;
         // uses resulting business name and location to pass to fbSearch
+        // Local Post request:
+        //axios.post('http://localhost:4000/fbSearch',{
         axios.post('https://thecitythatneversleeps.me/fbSearch',{
         data: {
           name: this.yelpResult,

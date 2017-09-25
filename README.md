@@ -1,4 +1,4 @@
-# coffeeapp
+# The City That Never Sleeps
 
 > A simple coffee finding app for NY residents
 

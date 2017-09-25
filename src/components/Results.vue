@@ -1,6 +1,5 @@
 <template>
   <div class = "body">
-    <p> TEST: {{ getCoords}} QUERY: {{getQuery}} </p>
     <h1 class = "result-header"> {{ yelpResult }}</h1>
     <div class = "result-button-set">
       <button class = "btn-primary" value = "YELP">

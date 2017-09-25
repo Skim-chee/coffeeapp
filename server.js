@@ -25,17 +25,19 @@ var express = require('express'),
       var port = process.env.PORT || 4000;
 
       // If production, sets certificates for https
-      // if (process.env.NODE_ENV === 'production') {
-      //   var key = fs.readFileSync('encryption/private.key');
-      //   var cert = fs.readFileSync( 'encryption/primary.crt' );
-      //   var ca = fs.readFileSync( 'encryption/intermediate.crt' );
-      //   var options = {
-      //     key: key,
-      //     cert: cert,
-      //     ca: ca
-      //   };
-      //   https.createServer(options, app).listen(4330);
-      // }
+      if (process.env.NODE_ENV === 'production') {
+        var key = fs.readFileSync('/etc/letsencrypt/live/thecitythatneversleeps.me/privkey.pem');
+        var cert = fs.readFileSync( '/etc/letsencrypt/live/thecitythatneversleeps.me/fullchain.pem' );
+        var ca = fs.readFileSync(
+          '/etc/letsencrypt/live/thecitythatneversleeps.me/chain1.pem'
+        )
+        var options = {
+          key: key,
+          cert: cert,
+          ca: ca
+        };
+        https.createServer(options, app).listen(4330);
+      }
       http.createServer(app).listen(port, () => {
         console.log('Listening on port ' + port);
       });

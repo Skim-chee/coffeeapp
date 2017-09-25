@@ -29,7 +29,7 @@ var express = require('express'),
         var key = fs.readFileSync('/etc/letsencrypt/live/thecitythatneversleeps.me/privkey.pem');
         var cert = fs.readFileSync( '/etc/letsencrypt/live/thecitythatneversleeps.me/fullchain.pem' );
         var ca = fs.readFileSync(
-          '/etc/letsencrypt/live/thecitythatneversleeps.me/chain1.pem'
+          '/etc/letsencrypt/live/thecitythatneversleeps.me/chain.pem'
         )
         var options = {
           key: key,

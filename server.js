@@ -8,7 +8,8 @@ var express = require('express'),
       cors = require('cors'),
       axios = require('axios'),
       yelpSearch = require('./src/routes/yelpSearch'),
-      fbSearch = require('./src/routes/fbSearch');
+      fbSearch = require('./src/routes/fbSearch'),
+      debug = require('debug');
 
       const app = express();
       app.use(express.static('public'));

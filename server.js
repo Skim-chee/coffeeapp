@@ -2,13 +2,18 @@
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').load();
 }
-var express = require('express'),
+var express = require('express')
+      http = require('http'),
+      https = require('https'),
+      fs = require('fs'),
       path = require('path'),
       bodyParser = require('body-parser'),
       cors = require('cors'),
       axios = require('axios'),
       yelpSearch = require('./src/routes/yelpSearch'),
       fbSearch = require('./src/routes/fbSearch');
+
+
 
       const app = express();
       app.use(express.static('public'));
@@ -19,6 +24,17 @@ var express = require('express'),
       app.use(fbSearch);
       var port = process.env.PORT || 4000;
 
-      var server = app.listen(port, () => {
-        console.log('Listening on port ' + port);
-      });
+      // If production, sets certificates for https
+      if (process.env.NODE_ENV == 'production') {
+        var cert = fs.readFileSync('/etc/ssl/certs/nginx-selfsigned.crt');
+        var key = fs.readFileSync('/etc/ssl/private/nginx-selfsigned.key');
+        var options = {
+          key: key,
+          cert: cert
+        };
+        https.createServer(options, app).listen(4330);
+      } else {
+        var server = app.listen(port, () => {
+          console.log('Listening on port ' + port);
+        });
+      }

@@ -25,7 +25,7 @@ var express = require('express')
       var port = process.env.PORT || 4000;
 
       // If production, sets certificates for https
-      if (process.env.NODE_ENV == 'production') {
+      if (process.env.NODE_ENV === 'production') {
         var cert = fs.readFileSync('/etc/ssl/certs/nginx-selfsigned.crt');
         var key = fs.readFileSync('/etc/ssl/private/nginx-selfsigned.key');
         var options = {

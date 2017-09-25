@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <img v-on:click="goHome" id = "logo" src="./assets/logo@2x.png">
+    <img v-on:click="goHome" id = "logo" src="./assets/Logo@2x.png">
     <router-view></router-view>
 
     <footer>

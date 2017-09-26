@@ -116,6 +116,7 @@ h1{
   text-align: center;
   line-height: 56px;
   margin-top: 16px;
+  margin-bottom: 0;
 
   @include desktop {
     margin-top: 32px;
@@ -195,10 +196,16 @@ p {
   border: 2px solid $primary;
   text-align: center;
   align-self: center;
+  @include flexbox();
+  justify-content: center;
+  align-items: center;
 
   transform: translateY(0px);
   transition: all .3s ease;
 
+  color: $primary;
+  font-size: 17px;
+  font-weight: 600;
   p {
     color: $primary;
     font-size: 17px;
@@ -221,6 +228,8 @@ p {
   @extend .btn-primary;
 
   border: 2px solid $secondary;
+
+  color: $secondary;
   p {
     color: $secondary;
   }

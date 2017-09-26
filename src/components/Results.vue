@@ -2,12 +2,10 @@
   <div class = "body">
     <h1 class = "result-header"> {{ yelpResult }}</h1>
     <div class = "result-button-set">
-      <button class = "btn-primary" value = "YELP">
-        <a :href= "yelpURL" target = "_blank"> YELP </a>
-      </button>
-      <button class = "btn-primary" value = "MAP">
-        <a :href= "mapURL" target = "_blank"> MAP </a>
-      </button>
+
+        <a  class = "btn-primary" :href= "yelpURL" target = "_blank"> YELP </a>
+
+        <a class = "btn-primary" :href= "mapURL" target = "_blank"> MAP </a>
     </div>
     <table>
       <tbody>
@@ -131,10 +129,12 @@ export default {
     @include desktop {
       flex-direction: row;
       width: 616px;
+      margin-top: 32px;
     }
 
-    button {
-      margin: 12px;
+    .btn-primary {
+      margin-top: 0;
+      margin-bottom: 16px;
     }
   }
 

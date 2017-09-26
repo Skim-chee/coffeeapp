@@ -109,6 +109,12 @@ body {
 }
 
 /* Typography */
+
+/* Firefox fix */
+p, h1, h2, h3, h4, h5 {
+  margin: 0;
+}
+
 h1{
   font-family: $serif;
   font-size: 48px;

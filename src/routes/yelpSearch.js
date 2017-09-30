@@ -25,16 +25,19 @@ function yelpS (query, lat, lon, rad, res, times) {
     categories: ("coffee"),
     limit: 50
   }).then(response => {
-    console.log("Yelp search #:" + times);
     const resJson = response.jsonBody;
-    console.log(resJson);
     // Variable to check when response value found
     // Generates a random business number upto 50
     let count = resJson.businesses.length;
-    console.log("count: " + count);
+    if (count == 0 && times < 6) {
+      console.log("expanding search radius to: " + rad);
+      rad *= 2;
+      times += 1;
+
+      yelpS(query, lat, lon, rad, res, times);
+    }
 
     let randBus = randomGenerator(count);
-    console.log("randbus: " + randBus);
 
     for (var c = 0; c < count; c++) {
       console.log("looping: " + c);

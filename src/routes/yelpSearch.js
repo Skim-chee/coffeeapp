@@ -45,7 +45,6 @@ function yelpS (query, lat, lon, rad, res, times) {
         randBus = randomGenerator(count);
       }
     }
-    return res.status(200).json({name: "Could not find :)"});
   }).catch(e => {
     // console.log(e);
     if (times < 6) {

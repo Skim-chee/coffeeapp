@@ -16,7 +16,7 @@ function randomGenerator (numBus) {
   return Math.floor(Math.random() * numBus);
 }
 
-function yelpS (query, lat, lon, rad, res) {
+function yelpS (query, lat, lon, rad, res, times) {
   client.search({
     term: query,
     latitude: lat ,
@@ -47,7 +47,13 @@ function yelpS (query, lat, lon, rad, res) {
     }
   }).catch(e => {
     console.log(e);
-    return res.status(200).json({name: "Could not find :("});
+    if (times < 3) {
+      rad *= rad*2;
+      times += 1;
+      yelpS(query, lat, lon, rad, res, times);
+    } else {
+      return res.status(200).json({name: "Could not find :("});
+    }
   });
 }
 
@@ -58,6 +64,7 @@ router.post('/yelpSearch', (req, res) => {
   let lat = coords[0], lon = coords[1];
   // Radius of search in meters
   let rad = 9000;
+  let times = 0;
   // If stay, shows radius of 500m, otherwise 6 miles
   if (req.body.data.stay) {
     rad = 500;
@@ -66,7 +73,7 @@ router.post('/yelpSearch', (req, res) => {
   }
   // Check to make sure query and coords got passed through
   if (query || coords === undefined) {
-    yelpS(query, lat, lon, rad, res);
+    yelpS(query, lat, lon, rad, res, times);
   }
 })
 

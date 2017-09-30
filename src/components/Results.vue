@@ -56,8 +56,8 @@ export default {
       }})
       .then(response => {
         this.yelpResult = response.data.name;
+        // If return with error, stop the rest of search
         if (this.yelpResult != "Could not find :(") {
-          console.log(response);
           this.yelpURL = response.data.url;
           this.mapURL = "https://www.yelp.com/map/" + this.yelpURL.split('/')[4];
           let curCoords = response.data.coordinates.latitude + "," + response.data.coordinates.longitude;

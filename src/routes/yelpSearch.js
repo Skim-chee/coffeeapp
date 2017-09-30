@@ -51,7 +51,9 @@ function yelpS (query, lat, lon, rad, res, times) {
       console.log("times run: " + times + " rad: " + rad);
       rad *= 2;
       times += 1;
-      yelpS(query, lat, lon, rad, res, times);
+      setTimeout(function() {
+        yelpS(query, lat, lon, rad, res, times);
+      }, 100);
     } else {
       return res.status(200).json({name: "Could not find :("});
     }

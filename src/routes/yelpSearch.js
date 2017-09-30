@@ -49,7 +49,7 @@ function yelpS (query, lat, lon, rad, res, times) {
     console.log(e);
     if (times < 3) {
       console.log(times);
-      rad *= rad*2;
+      rad *= 2;
       times += 1;
       console.log(rad);
       yelpS(query, lat, lon, rad, res, times);

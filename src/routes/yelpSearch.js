@@ -17,38 +17,7 @@ function randomGenerator (numBus) {
 }
 
 function yelpSearch(query, lat, lon, rad) {
-  client.search({
-    term: query,
-    latitude: lat ,
-    longitude: lon ,
-    radius: rad,
-    categories: ("coffee"),
-    limit: 50
-  }).then(response => {
-    const resJson = response.jsonBody
-    // Variable to check when response value found
-    let resVal;
 
-    // Generates a random business number upto 50
-    let count = resJson.businesses.length;
-    let randBus = randomGenerator(count);
-
-    while (resVal === undefined) {
-      let randBusiness = resJson.businesses[randBus]
-      // Only marks cafes with a 4 or higher rating
-      if (randBusiness.rating >= 4) {
-        // Returns the selected business name
-        return res.status(200).json(resJson.businesses[randBus]);
-        resVal = resJson.businesses[randBus].name;
-      } else {
-        // Loops with another randomly generated business number
-        randBus = randomGenerator(count);
-      }
-    }
-  }).catch(e => {
-    return res.status(404).json({data: "Failed to find :("});
-    console.log(e);
-  });
 }
 
 router.post('/yelpSearch', (req, res) => {
@@ -70,7 +39,38 @@ router.post('/yelpSearch', (req, res) => {
   //TODO: Return 404 on errors, alert on page of error
   // Check to make sure query and coords got passed through
   if (query || coords === undefined) {
-    yelpSearch(query, lat, lon, rad);
+    client.search({
+      term: query,
+      latitude: lat ,
+      longitude: lon ,
+      radius: rad,
+      categories: ("coffee"),
+      limit: 50
+    }).then(response => {
+      const resJson = response.jsonBody
+      // Variable to check when response value found
+      let resVal;
+
+      // Generates a random business number upto 50
+      let count = resJson.businesses.length;
+      let randBus = randomGenerator(count);
+
+      while (resVal === undefined) {
+        let randBusiness = resJson.businesses[randBus]
+        // Only marks cafes with a 4 or higher rating
+        if (randBusiness.rating >= 4) {
+          // Returns the selected business name
+          return res.status(200).json(resJson.businesses[randBus]);
+          resVal = resJson.businesses[randBus].name;
+        } else {
+          // Loops with another randomly generated business number
+          randBus = randomGenerator(count);
+        }
+      }
+    }).catch(e => {
+      return res.status(404).json({data: "Failed to find :("});
+      console.log(e);
+    });
   }
 })
 

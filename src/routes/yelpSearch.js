@@ -36,7 +36,7 @@ function yelpS (query, lat, lon, rad, res, times) {
       times += 1;
 
       yelpS(query, lat, lon, rad, res, times);
-    } else if (times == 7) {
+    } else if (count == 0 && times == 7) {
       return res.status(200).json({name: "Could not find :("});
     }
 

@@ -23,9 +23,9 @@ router.post('/yelpSearch', (req, res) => {
   let lat = coords[0], lon = coords[1];
   // Radius of search in meters
   let rad = 9000;
-  // If stay, shows radius of 1 mile, otherwise 6 miles
+  // If stay, shows radius of 500m, otherwise 6 miles
   if (req.body.data.stay) {
-    rad = 1500;
+    rad = 500;
   } else {
     rad = 9000;
   }

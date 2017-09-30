@@ -26,6 +26,7 @@ var express = require('express'),
 
       // If production, sets certificates for https
       if (process.env.NODE_ENV === 'production') {
+        console.log('NODE_ENV = Production');
         var key = fs.readFileSync('/etc/letsencrypt/live/thecitythatneversleeps.me/privkey.pem');
         var cert = fs.readFileSync( '/etc/letsencrypt/live/thecitythatneversleeps.me/fullchain.pem' );
         var ca = fs.readFileSync(
@@ -37,6 +38,7 @@ var express = require('express'),
           ca: ca
         };
         https.createServer(options, app).listen(4330);
+        console.log('Listening on port 4330');
       }
       http.createServer(app).listen(port, () => {
         console.log('Listening on port ' + port);

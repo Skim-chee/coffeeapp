@@ -56,23 +56,26 @@ export default {
       }})
       .then(response => {
         this.yelpResult = response.data.name;
-        this.yelpURL = response.data.url;
-        this.mapURL = "https://www.yelp.com/map/" + this.yelpURL.split('/')[4];
-        let curCoords = response.data.coordinates.latitude + "," + response.data.coordinates.longitude;
-        // uses resulting business name and location to pass to fbSearch
-        // Local Post request:
-        //axios.post('http://localhost:4000/fbSearch',{
-        axios.post('https://thecitythatneversleeps.me/fbSearch',{
-        data: {
-          name: this.yelpResult,
-          coords: curCoords
-        }})
-        .then(r => {
-          this.imageResults = r.data;
-        })
-        .catch(e => {
-          console.log(e);
-        });
+        if (this.yelpResult != "Could not find :(") {
+          console.log(response);
+          this.yelpURL = response.data.url;
+          this.mapURL = "https://www.yelp.com/map/" + this.yelpURL.split('/')[4];
+          let curCoords = response.data.coordinates.latitude + "," + response.data.coordinates.longitude;
+          // uses resulting business name and location to pass to fbSearch
+          // Local Post request:
+          //axios.post('http://localhost:4000/fbSearch',{
+          axios.post('https://thecitythatneversleeps.me/fbSearch',{
+          data: {
+            name: this.yelpResult,
+            coords: curCoords
+          }})
+          .then(r => {
+            this.imageResults = r.data;
+          })
+          .catch(e => {
+            console.log(e);
+          });
+        }
       })
       .catch(e => {
         console.log(e);

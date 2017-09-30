@@ -47,7 +47,7 @@ function yelpS (query, lat, lon, rad, res) {
     }
   }).catch(e => {
     console.log(e);
-    return res.status(200).json({data:{body: "Could not find :("}});
+    return res.status(200).json({name: "Could not find :("});
   });
 }
 

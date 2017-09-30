@@ -27,7 +27,7 @@ function yelpS (query, lat, lon, rad, res, times) {
   }).then(response => {
     console.log("Yelp search #:" + times);
     const resJson = response.jsonBody;
-    console.log("resJson");
+    console.log(resJson);
     // Variable to check when response value found
     // Generates a random business number upto 50
     let count = resJson.businesses.length;
@@ -50,14 +50,13 @@ function yelpS (query, lat, lon, rad, res, times) {
       }
     }
   }).catch(e => {
-    console.log(e);
+    // console.log(e);
     if (times < 6) {
       console.log("times run: " + times + " rad: " + rad);
       rad *= 2;
       times += 1;
-      setTimeout(function() {
-        yelpS(query, lat, lon, rad, res, times);
-      }, 100);
+
+      yelpS(query, lat, lon, rad, res, times);
     } else {
       return res.status(200).json({name: "Could not find :("});
     }

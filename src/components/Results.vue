@@ -45,7 +45,6 @@ export default {
     ])
   },
   methods: {
-    //TODO: Make sure query changes before doing this
     yelpSearch: function () {
       axios.post('https://thecitythatneversleeps.me/yelpSearch',{
       data: {

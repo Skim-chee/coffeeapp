@@ -17,7 +17,7 @@ function randomGenerator (numBus) {
 }
 
 function yelpS (query, lat, lon, rad, res, times) {
-  console.log("Yelp search #:" + times);
+  // console.log("Yelp search #:" + times);
   client.search({
     term: query,
     latitude: lat ,
@@ -47,13 +47,12 @@ function yelpS (query, lat, lon, rad, res, times) {
       }
     }
   }).catch(e => {
-    console.log(e);
+    // console.log(e);
     if (times < 6) {
-      console.log("times run: " + times + " rad: " + rad);
+      // console.log("times run: " + times + " rad: " + rad);
       rad *= 2;
       times += 1;
       setTimeout(function() {
-        console.log("calling yelpS");
         yelpS(query, lat, lon, rad, res, times);
       }, 100);
     } else {

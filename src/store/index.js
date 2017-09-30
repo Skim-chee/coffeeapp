@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { Store } from 'vuex'
-import createPersistedState from 'vuex-persistedstate'
 import * as Cookies from 'js-cookie'
 
 Vue.use(Vuex)
@@ -16,7 +15,6 @@ function getDenied (err) {
 function getPosition (callback) {
   navigator.geolocation.watchPosition(
     function (position) {
-
       var coords = position.coords.latitude + "," + position.coords.longitude;
       callback(coords);
     }, getDenied, {maximumAge: Infinity}
@@ -75,12 +73,7 @@ const store = new Vuex.Store({
       return state.stay
     }
   },
-  // Allows the state to persist through refresh by setting cookies
-  plugins: [
-    createPersistedState({
-      getItem: key => Cookies.getJSON(key),
-      setItem: (key, value) => Cookies.set(key, value, { expires: 3, secure: true})
-  })]
+
 
 })
 

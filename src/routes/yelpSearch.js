@@ -16,7 +16,7 @@ function randomGenerator (numBus) {
   return Math.floor(Math.random() * numBus);
 }
 
-function yelpSearch (query, lat, lon, rad) {
+function yelpS (query, lat, lon, rad, res) {
   client.search({
     term: query,
     latitude: lat ,
@@ -25,7 +25,6 @@ function yelpSearch (query, lat, lon, rad) {
     categories: ("coffee"),
     limit: 50
   }).then(response => {
-    console.log("response");
     const resJson = response.jsonBody
     // Variable to check when response value found
     let resVal;
@@ -67,8 +66,7 @@ router.post('/yelpSearch', (req, res) => {
   }
   // Check to make sure query and coords got passed through
   if (query || coords === undefined) {
-    console.log("Step one");
-    yelpSearch(query, lat, lon, rad);
+    yelpS(query, lat, lon, rad, res);
   }
 })
 

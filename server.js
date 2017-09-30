@@ -26,7 +26,6 @@ var express = require('express'),
 
       // If production, sets certificates for https
       if (process.env.NODE_ENV === 'production') {
-        console.log('NODE_ENV = Production');
         var key = fs.readFileSync('/etc/letsencrypt/live/thecitythatneversleeps.me/privkey.pem');
         var cert = fs.readFileSync( '/etc/letsencrypt/live/thecitythatneversleeps.me/fullchain.pem' );
         var ca = fs.readFileSync(

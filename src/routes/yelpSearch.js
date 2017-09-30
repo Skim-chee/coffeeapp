@@ -48,8 +48,10 @@ function yelpS (query, lat, lon, rad, res, times) {
   }).catch(e => {
     console.log(e);
     if (times < 3) {
+      console.log(times);
       rad *= rad*2;
       times += 1;
+      console.log(rad);
       yelpS(query, lat, lon, rad, res, times);
     } else {
       return res.status(200).json({name: "Could not find :("});

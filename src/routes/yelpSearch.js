@@ -47,7 +47,7 @@ function yelpS (query, lat, lon, rad, res, times) {
     }
   }).catch(e => {
     console.log(e);
-    if (times < 3) {
+    if (times < 4) {
       console.log(times);
       rad *= 2;
       times += 1;

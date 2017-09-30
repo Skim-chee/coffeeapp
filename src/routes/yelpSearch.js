@@ -29,8 +29,7 @@ function yelpS (query, lat, lon, rad, res, times) {
     // Variable to check when response value found
     // Generates a random business number upto 50
     let count = resJson.businesses.length;
-    console.log(resJson);
-    console.log("count: " + count);
+
     if (count == 0 && times < 6) {
       console.log("expanding search radius to: " + rad);
       rad *= 2;

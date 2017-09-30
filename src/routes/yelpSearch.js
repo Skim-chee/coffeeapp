@@ -17,6 +17,7 @@ function randomGenerator (numBus) {
 }
 
 function yelpS (query, lat, lon, rad, res, times) {
+  console.log("Yelp search #:" + times);
   client.search({
     term: query,
     latitude: lat ,
@@ -52,6 +53,7 @@ function yelpS (query, lat, lon, rad, res, times) {
       rad *= 2;
       times += 1;
       setTimeout(function() {
+        console.log("calling yelpS");
         yelpS(query, lat, lon, rad, res, times);
       }, 100);
     } else {

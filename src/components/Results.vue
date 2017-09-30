@@ -7,6 +7,7 @@
 
         <a class = "btn-primary" :href= "mapURL" target = "_blank"> MAP </a>
     </div>
+    <!-- TODO: Create a loading gif -->
     <table>
       <tbody>
         <tr v-for = "image in imageResults">

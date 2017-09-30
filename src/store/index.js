@@ -19,7 +19,7 @@ function getPosition (callback) {
 
       var coords = position.coords.latitude + "," + position.coords.longitude;
       callback(coords);
-    }, getDenied, {maximumAge: Infinity, timeout: 5000}
+    }, getDenied, {maximumAge: Infinity}
   )
 }
 

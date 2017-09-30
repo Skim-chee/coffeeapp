@@ -35,12 +35,14 @@ function yelpS (query, lat, lon, rad, res, times) {
       times += 1;
 
       yelpS(query, lat, lon, rad, res, times);
+    } else {
+      return res.status(200).json({name: "Could not find :("});
     }
 
     let randBus = randomGenerator(count);
 
     for (var c = 0; c < count; c++) {
-      console.log("looping: " + c);
+      // console.log("looping: " + c);
       let randBusiness = resJson.businesses[randBus]
       // Only marks cafes with a 4 or higher rating
       if (randBusiness.rating >= 4) {
@@ -55,7 +57,7 @@ function yelpS (query, lat, lon, rad, res, times) {
   }).catch(e => {
     // console.log(e);
     if (times < 6) {
-      console.log("times run: " + times + " rad: " + rad);
+      // console.log("times run: " + times + " rad: " + rad);
       rad *= 2;
       times += 1;
 

@@ -26,9 +26,8 @@ function yelpS (query, lat, lon, rad, res, times) {
     limit: 50
   }).then(response => {
     console.log("Yelp search #:" + times);
-    const resJson = response.jsonBody
+    const resJson = response.jsonBody;
     // Variable to check when response value found
-
     // Generates a random business number upto 50
     let count = resJson.businesses.length;
     let randBus = randomGenerator(count);

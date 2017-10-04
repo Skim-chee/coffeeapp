@@ -80,7 +80,9 @@ router.post('/yelpSearch', (req, res) => {
   }
   // Check to make sure query and coords got passed through
   if (query || coords === undefined) {
-    return res.status(200).json(yelpS(query, lat, lon, rad, res, times));
+    let returnVal = yelpS(query, lat, lon, rad, res, times);
+    console.log("Picked: " + returnVal);
+    return res.status(200).json(returnVal);
   }
 })
 

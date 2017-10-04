@@ -30,7 +30,8 @@ router.post('/fbSearch', (req, res) => {
     if (r) {
       // Gets id of location based on searchOption using graphAPI
       idResult = r.data[0].id;
-      if (idResult) {
+      // If id not found, return empty array and show error message
+      if (!idResult) {
         return res.status(200).send(imageURLS);
       }
       const queryString = "https://www.instagram.com/explore/locations/" + idResult + "/?__a=1";

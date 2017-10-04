@@ -3,12 +3,11 @@
     <h1 class = "result-header" v-if="loading"> Loading... </h1>
     <h1 class = "result-header" v-else="loading"> {{ yelpResult }}</h1>
     <div class = "result-button-set">
-
+        <!-- Links to yelp and google maps -->
         <a  class = "btn-primary" :href= "yelpURL" target = "_blank"> YELP </a>
-
         <a class = "btn-primary" :href= "mapURL" target = "_blank"> MAP </a>
     </div>
-    <!-- TODO: Create a loading gif -->
+    <!-- If ig images not found, show error message -->
     <h1 class = "result-header" v-if="!found"> Could not find images :( </h1>
     <table>
       <tbody>

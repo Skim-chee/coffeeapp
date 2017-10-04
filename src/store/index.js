@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import { Store } from 'vuex'
 import * as Cookies from 'js-cookie'
+import createPersistedState from 'vuex-persistedstate'
 
 Vue.use(Vuex)
 
@@ -73,7 +74,16 @@ const store = new Vuex.Store({
     getStay(state) {
       return state.stay
     }
-  },
+  }
+  // ,
+  // plugins: [
+  //   createPersistedState({
+  //     Storage: {
+  //       getItem: key => Cookies.get(key),
+  //       setItem: (key, value) => Cookies.set(key, value, { expires: 3, secure: true })
+  //     }
+  //   })
+  // ]
 
 
 })

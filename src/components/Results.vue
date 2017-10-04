@@ -1,6 +1,7 @@
 <template>
   <div class = "body">
-    <h1 class = "result-header"> {{ yelpResult }}</h1>
+    <h1 class = "result-header" v-if="loading"> Loading... </h1>
+    <h1 class = "result-header" v-else="loading"> {{ yelpResult }}</h1>
     <div class = "result-button-set">
 
         <a  class = "btn-primary" :href= "yelpURL" target = "_blank"> YELP </a>
@@ -35,7 +36,8 @@ export default {
       yelpResult: "",
       yelpURL: "",
       mapURL: "",
-      imageResults: []
+      imageResults: [],
+      loading: true
     }
   },
   computed: {
@@ -47,6 +49,7 @@ export default {
   },
   methods: {
     yelpSearch: function () {
+      this.loading = true;
       axios.post('https://thecitythatneversleeps.me/yelpSearch',{
       data: {
         query: this.getQuery,
@@ -55,6 +58,7 @@ export default {
       }})
       .then(response => {
         this.yelpResult = response.data.name;
+        this.loading = false;
         // If return with error, stop the rest of search
         if (this.yelpResult != "Could not find :(") {
           this.yelpURL = response.data.url;

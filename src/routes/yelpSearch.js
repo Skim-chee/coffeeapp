@@ -27,9 +27,12 @@ function yelpS (query, lat, lon, rad, res, times) {
   }).then(response => {
     const resJson = response.jsonBody;
     const filteredJson = resJson.businesses.filter(({rating}) => rating >= 4);
-    // console.log("Found: " + filteredJson.name + " with rating of: " + filterJson.rating);
-    console.log(filteredJson);
+    // console.log(filteredJson);
     let count = filteredJson.length;
+    for (let f = 0; f < count; f++) {
+      let filter = filteredJson[f];
+      console.log("Found: " + filter.name + " with rating of: " + filter.rating);
+    }
 
     if (count == 0 && times < 7) {
       console.log("expanding search radius to: " + rad);

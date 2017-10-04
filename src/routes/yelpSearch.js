@@ -27,7 +27,7 @@ function yelpS (query, lat, lon, rad, res, offset, times) {
     limit: 50
   }).then(response => {
     const resJson = response.jsonBody;
-    const filteredJson = resJson.businesses.filter(b => b.rating >= 4 && b.review_count >= 10);
+    const filteredJson = resJson.businesses.filter(b => b.rating >= 4 && b.review_count >= 10 && b.is_closed == false);
     // console.log(filteredJson);
     let count = filteredJson.length;
 

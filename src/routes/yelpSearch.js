@@ -27,7 +27,7 @@ function yelpS (query, lat, lon, rad, res, times) {
   }).then(response => {
     const resJson = response.jsonBody;
     const filteredJson = resJson.businesses.filter(({rating}) => rating >= 4);
-    console.log(filteredJson);
+    console.log("Found: " + filteredJson.name + " with rating of: " + filterJson.rating);
     let count = filteredJson.length;
 
     if (count == 0 && times < 7) {
@@ -42,20 +42,7 @@ function yelpS (query, lat, lon, rad, res, times) {
 
     let randBus = randomGenerator(count);
 
-    for (var c = 0; c < count; c++) {
-      // console.log("looping: " + c);
-      let randBusiness = filteredJson[randBus];
-      // Only marks cafes with a 4 or higher rating
-      // if (randBusiness.rating >= 4) {
-      //   // Returns the selected business name
-      //   resVal = resJson.businesses[randBus].name;
-      //   return res.status(200).json(resJson.businesses[randBus]);
-      // } else {
-      //   // Loops with another randomly generated business number
-      //   randBus = randomGenerator(count);
-      // }
-      return res.status(200).json(filteredJson[randBus]);
-    }
+    return res.status(200).json(filteredJson[randBus]);
   }).catch(e => {
     // console.log(e);
     if (times < 7) {

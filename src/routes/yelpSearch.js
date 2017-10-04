@@ -26,10 +26,9 @@ function yelpS (query, lat, lon, rad, res, times) {
     limit: 50
   }).then(response => {
     const resJson = response.jsonBody;
-    console.log(resJson);
-    // Variable to check when response value found
-    // Generates a random business number upto 50
-    let count = resJson.businesses.length;
+    const filteredJson = resJson.businesses.filter(({rating}) => rating >= 4);
+    console.log(filteredJson);
+    let count = filteredJson.length;
 
     if (count == 0 && times < 7) {
       console.log("expanding search radius to: " + rad);
@@ -45,16 +44,17 @@ function yelpS (query, lat, lon, rad, res, times) {
 
     for (var c = 0; c < count; c++) {
       // console.log("looping: " + c);
-      let randBusiness = resJson.businesses[randBus]
+      let randBusiness = filteredJson[randBus];
       // Only marks cafes with a 4 or higher rating
-      if (randBusiness.rating >= 4) {
-        // Returns the selected business name
-        resVal = resJson.businesses[randBus].name;
-        return res.status(200).json(resJson.businesses[randBus]);
-      } else {
-        // Loops with another randomly generated business number
-        randBus = randomGenerator(count);
-      }
+      // if (randBusiness.rating >= 4) {
+      //   // Returns the selected business name
+      //   resVal = resJson.businesses[randBus].name;
+      //   return res.status(200).json(resJson.businesses[randBus]);
+      // } else {
+      //   // Loops with another randomly generated business number
+      //   randBus = randomGenerator(count);
+      // }
+      return res.status(200).json(filteredJson[randBus]);
     }
   }).catch(e => {
     // console.log(e);

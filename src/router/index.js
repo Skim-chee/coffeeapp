@@ -18,7 +18,7 @@ const checkStateUpdated = (to, from, next) => {
       (state) => state.location,
       (value) => {
         if (value.length > 0) {
-          console.log("Your location is: " + value);
+          // console.log("Your location is: " + value);
           proceed();
         }
       }

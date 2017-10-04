@@ -73,16 +73,15 @@ const store = new Vuex.Store({
     getStay(state) {
       return state.stay
     }
-  }
-  // ,
-  // plugins: [
-  //   createPersistedState({
-  //     Storage: {
-  //       getItem: key => Cookies.get(key),
-  //       setItem: (key, value) => Cookies.set(key, value, { expires: 3, secure: true })
-  //     }
-  //   })
-  // ]
+  },
+  plugins: [
+    createPersistedState({
+      Storage: {
+        getItem: key => Cookies.get(key),
+        setItem: (key, value) => Cookies.set(key, value, { expires: 3, secure: true })
+      }
+    })
+  ]
 
 
 })

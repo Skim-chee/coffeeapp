@@ -51,16 +51,7 @@ function yelpS (query, lat, lon, rad, res, times) {
 
   }).catch(e => {
     console.log(e);
-    return res.status(400);
-    // if (times < 7) {
-    //   // console.log("times run: " + times + " rad: " + rad);
-    //   rad *= 2;
-    //   times += 1;
-
-    //   yelpS(query, lat, lon, rad, res, times);
-    // } else {
-    //   return res.status(200).json({name: "Could not find :("});
-    // }
+    return res.status(400).json({name: "Could not find :("});
   });
 }
 
@@ -74,9 +65,9 @@ router.post('/yelpSearch', (req, res) => {
   let times = 0;
   let stay = req.body.data.stay;
   console.log("Your query is: " + query + " , coords are: " + coords + " , and stay is: " + stay );
-  // If stay, shows radius of 500m, otherwise 6 miles
+  // If stay, shows radius of 100m, otherwise 6 miles
   if (stay) {
-    rad = 50;
+    rad = 150;
   } else {
     rad = 9000;
   }

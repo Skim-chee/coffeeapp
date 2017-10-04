@@ -73,8 +73,9 @@ router.post('/yelpSearch', (req, res) => {
     rad = 250 + (100*randRad);
   } else {
     rad = 9000;
-    offset = 100;
+    offset = 500;
   }
+  console.log("Search radius is: " + rad + ", offset is: " + offset);
   // Check to make sure query and coords got passed through
   if (query || coords === undefined) {
     yelpS(query, lat, lon, rad, res, offset, times);

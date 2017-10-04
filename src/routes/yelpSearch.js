@@ -45,9 +45,7 @@ function yelpS (query, lat, lon, rad, res, times) {
       return res.status(200).json({name: "Could not find :("});
     }
 
-    let randBus = randomGenerator(count);
-
-    return filteredJson[randbus];
+    return filteredJson[randomGenerator(count)];
 
   }).catch(e => {
     console.log(e);

@@ -43,14 +43,18 @@ function yelpS (query, lat, lon, rad, res, times) {
       yelpS(query, lat, lon, rad, res, times);
     } else if (count == 0 && times == 7) {
       res.status(200).json({name: "Could not find :("});
+      return res.end();
     }
 
     let randBus = randomGenerator(count);
 
     res.status(200).json(filteredJson[randBus]);
+    return res.end();
   }).catch(e => {
     console.log(e);
     res.status(400);
+    return res.end();
+
     // if (times < 7) {
     //   // console.log("times run: " + times + " rad: " + rad);
     //   rad *= 2;

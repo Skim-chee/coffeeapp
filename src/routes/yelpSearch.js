@@ -29,6 +29,7 @@ function yelpS (query, lat, lon, rad, res, times) {
     const filteredJson = resJson.businesses.filter(({rating}) => rating >= 4);
     // console.log(filteredJson);
     let count = filteredJson.length;
+
     for (let f = 0; f < count; f++) {
       let filter = filteredJson[f];
       console.log("Found: " + filter.name + " with rating of: " + filter.rating);
@@ -46,7 +47,8 @@ function yelpS (query, lat, lon, rad, res, times) {
 
     let randBus = randomGenerator(count);
 
-    return res.status(200).json(filteredJson[randBus]);
+    return filteredJson[randbus];
+
   }).catch(e => {
     console.log(e);
     res.status(400);
@@ -80,7 +82,7 @@ router.post('/yelpSearch', (req, res) => {
   }
   // Check to make sure query and coords got passed through
   if (query || coords === undefined) {
-    yelpS(query, lat, lon, rad, res, times);
+    return res.status(200).json(yelpS(query, lat, lon, rad, res, times));
   }
 })
 

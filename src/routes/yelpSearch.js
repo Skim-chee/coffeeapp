@@ -42,12 +42,12 @@ function yelpS (query, lat, lon, rad, res, times) {
 
       yelpS(query, lat, lon, rad, res, times);
     } else if (count == 0 && times == 7) {
-      return res.status(200).json({name: "Could not find :("});
+      res.status(200).json({name: "Could not find :("});
     }
 
     let randBus = randomGenerator(count);
 
-    return res.status(200).json(filteredJson[randBus]);
+    res.status(200).json(filteredJson[randBus]);
   }).catch(e => {
     console.log(e);
     res.status(400);

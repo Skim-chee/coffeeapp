@@ -27,20 +27,20 @@ function yelpS (query, lat, lon, rad, res, offset, times) {
     limit: 50
   }).then(response => {
     const resJson = response.jsonBody;
-    const filteredJson = resJson.businesses.filter(({rating}) => rating >= 4);
+    const filteredJson = resJson.businesses.filter(b => b.rating >= 4 && b.review_count >= 10);
     // console.log(filteredJson);
     let count = filteredJson.length;
 
     if (count > 0) {
       for (let f = 0; f < count; f++) {
         let filter = filteredJson[f];
-        console.log("Found: " + filter.name + " with rating of: " + filter.rating);
+        console.log("Found: " + filter.name + " with rating of: " + filter.rating + " and " + filter.review_count + " reviews");
       }
       let randBus = randomGenerator(count);
       return res.status(200).json(filteredJson[randBus]);
     }
 
-    if (count == 0 && times < 7) {
+    if (count == 0 && times < 6) {
       console.log("expanding search radius to: " + rad);
       rad *= 2;
       times += 1;
@@ -70,10 +70,10 @@ router.post('/yelpSearch', (req, res) => {
   // If stay, shows radius of 100m, otherwise 6 miles
   if (stay) {
     let randRad = randomGenerator(3);
-    rad = 250 + (100*randRad);
+    rad = 250 + (125*randRad);
   } else {
     rad = 9000;
-    offset = 500;
+    offset = randomGenerator(250);
   }
   console.log("Search radius is: " + rad + ", offset is: " + offset);
   // Check to make sure query and coords got passed through

@@ -45,16 +45,16 @@ function yelpS (query, lat, lon, rad, res, times) {
 
     return res.status(200).json(filteredJson[randBus]);
   }).catch(e => {
-    // console.log(e);
-    if (times < 7) {
-      // console.log("times run: " + times + " rad: " + rad);
-      rad *= 2;
-      times += 1;
+    console.log(e);
+    // if (times < 7) {
+    //   // console.log("times run: " + times + " rad: " + rad);
+    //   rad *= 2;
+    //   times += 1;
 
-      yelpS(query, lat, lon, rad, res, times);
-    } else {
-      return res.status(200).json({name: "Could not find :("});
-    }
+    //   yelpS(query, lat, lon, rad, res, times);
+    // } else {
+    //   return res.status(200).json({name: "Could not find :("});
+    // }
   });
 }
 

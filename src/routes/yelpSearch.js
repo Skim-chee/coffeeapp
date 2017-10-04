@@ -34,10 +34,9 @@ function yelpS (query, lat, lon, rad, res, times) {
       for (let f = 0; f < count; f++) {
         let filter = filteredJson[f];
         console.log("Found: " + filter.name + " with rating of: " + filter.rating);
-
-        let randBus = randomGenerator(count);
-        return res.status(200).json(filteredJson[randBus]);
       }
+      let randBus = randomGenerator(count);
+      return res.status(200).json(filteredJson[randBus]);
     }
 
     if (count == 0 && times < 7) {

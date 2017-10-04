@@ -45,8 +45,9 @@ function yelpS (query, lat, lon, rad, res, times) {
       return res.status(200).json({name: "Could not find :("});
     }
 
-    return filteredJson[randomGenerator(count)];
+    let randBus = randomGenerator(count);
 
+    return res.status(200).json(filteredJson[randBus]);
   }).catch(e => {
     console.log(e);
     res.status(400);
@@ -80,9 +81,7 @@ router.post('/yelpSearch', (req, res) => {
   }
   // Check to make sure query and coords got passed through
   if (query || coords === undefined) {
-    let returnVal = yelpS(query, lat, lon, rad, res, times);
-    console.log("Picked: " + returnVal);
-    return res.status(200).json(returnVal);
+    yelpS(query, lat, lon, rad, res, times);
   }
 })
 

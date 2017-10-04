@@ -34,7 +34,6 @@ const store = new Vuex.Store({
       state.query = desc;
     },
     update_coord (state, pos) {
-      state.location = "";
       state.location = pos;
     },
     update_stay (state, s) {

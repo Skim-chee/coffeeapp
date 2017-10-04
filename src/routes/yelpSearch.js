@@ -75,7 +75,7 @@ router.post('/yelpSearch', (req, res) => {
   console.log("Your query is: " + query + " , coords are: " + coords + " , and stay is: " + stay );
   // If stay, shows radius of 500m, otherwise 6 miles
   if (stay) {
-    rad = 250;
+    rad = 50;
   } else {
     rad = 9000;
   }

@@ -27,7 +27,8 @@ function yelpS (query, lat, lon, rad, res, times) {
   }).then(response => {
     const resJson = response.jsonBody;
     const filteredJson = resJson.businesses.filter(({rating}) => rating >= 4);
-    console.log("Found: " + filteredJson.name + " with rating of: " + filterJson.rating);
+    // console.log("Found: " + filteredJson.name + " with rating of: " + filterJson.rating);
+    console.log(filteredJson);
     let count = filteredJson.length;
 
     if (count == 0 && times < 7) {

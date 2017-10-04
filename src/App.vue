@@ -6,7 +6,6 @@
     <footer>
       <div class = "footer-container">
         <p class = "footer-info"> Made with <i id = "heart-emoji"></i> in New York </p>
-
         <ul>
           <li>
             <a href = "https://sanminimal.com/portfolio" target = "_blank">Brewed for you by Seean Kim</a>
@@ -272,7 +271,7 @@ footer {
       color: $white;
 
       &:hover {
-        text-shadow: 0px 1px 1px #444444;
+        text-shadow: 0px 2px 0px rgba(68, 68, 68, 0.25);
       }
     }
   }

@@ -49,6 +49,7 @@ function yelpS (query, lat, lon, rad, res, times) {
     return res.status(200).json(filteredJson[randBus]);
   }).catch(e => {
     console.log(e);
+    res.status(400);
     // if (times < 7) {
     //   // console.log("times run: " + times + " rad: " + rad);
     //   rad *= 2;
@@ -69,6 +70,7 @@ router.post('/yelpSearch', (req, res) => {
   // Radius of search in meters
   let rad = 9000;
   let times = 0;
+  console.log("Your query is: " + query + " , coords are: " + coords + " , and stay is: " + stay );
   // If stay, shows radius of 500m, otherwise 6 miles
   if (req.body.data.stay) {
     rad = 250;

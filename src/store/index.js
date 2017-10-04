@@ -13,7 +13,7 @@ function getDenied (err) {
 // Gets users position using html5 geolocater
 // returns var coords through callback
 function getPosition (callback) {
-  navigator.geolocation.watchPosition(
+  navigator.geolocation.getCurrentPosition(
     function (position) {
       var coords = position.coords.latitude + "," + position.coords.longitude;
       callback(coords);
@@ -24,16 +24,17 @@ function getPosition (callback) {
 
 const store = new Vuex.Store({
   state: {
-    query : "coffee nice atmosphere",
-    location: "40.725925,-73.909149",
+    query : "",
+    location: "",
     stay: true
   },
   mutations: {
     update_query (state, desc) {
-      state.query = desc
+      state.query = desc;
     },
     update_coord (state, pos) {
-      state.location = pos
+      state.location = "";
+      state.location = pos;
     },
     update_stay (state, s) {
       if (s == true) {

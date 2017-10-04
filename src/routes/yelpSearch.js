@@ -73,7 +73,11 @@ router.post('/yelpSearch', (req, res) => {
     rad = 250 + (125*randRad);
   } else {
     rad = 9000;
-    offset = randomGenerator(250);
+    if (query = "coffee, wifi, outlets, study") {
+      offset = randomGenerator(50);
+    } else {
+      offset = randomGenerator(250);
+    }
   }
   console.log("Search radius is: " + rad + ", offset is: " + offset);
   // Check to make sure query and coords got passed through

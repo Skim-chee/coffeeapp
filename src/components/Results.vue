@@ -9,6 +9,7 @@
         <a class = "btn-primary" :href= "mapURL" target = "_blank"> MAP </a>
     </div>
     <!-- TODO: Create a loading gif -->
+    <h1 class = "result-header" v-if="!found"> Could not find images :( </h1>
     <table>
       <tbody>
         <tr v-for = "image in imageResults">
@@ -37,7 +38,8 @@ export default {
       yelpURL: "",
       mapURL: "",
       imageResults: [],
-      loading: true
+      loading: true,
+      found: true
     }
   },
   computed: {
@@ -69,6 +71,8 @@ export default {
           let encodedAddr = encodeURI(address);
           this.mapURL = "https://www.google.com/maps/search/?api=1&query=" + encodedAddr;
           let curCoords = response.data.coordinates.latitude + "," + response.data.coordinates.longitude;
+          // Sets found to true to hide error message
+          this.found = true;
           // uses resulting business name and location to pass to fbSearch
           axios.post('https://thecitythatneversleeps.me/fbSearch',{
           data: {
@@ -76,7 +80,11 @@ export default {
             coords: curCoords
           }})
           .then(r => {
-            this.imageResults = r.data;
+            if (r.data.length == 0) {
+              this.found = false;
+            } else {
+              this.imageResults = r.data;
+            }
           })
           .catch(e => {
             console.log(e);

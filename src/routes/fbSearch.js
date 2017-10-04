@@ -30,6 +30,9 @@ router.post('/fbSearch', (req, res) => {
     if (r) {
       // Gets id of location based on searchOption using graphAPI
       idResult = r.data[0].id;
+      if (idResult) {
+        return res.status(200).send(imageURLS);
+      }
       const queryString = "https://www.instagram.com/explore/locations/" + idResult + "/?__a=1";
 
       // Loads URL and loads in JSON response to parse
@@ -41,15 +44,15 @@ router.post('/fbSearch', (req, res) => {
             imageURLS.push(topPosts[p].thumbnail_src);
           }
           // Returns with 200 status and array of image urls
-          res.status(200).send(imageURLS);
+          return res.status(200).send(imageURLS);
         } else {
           console.log(error);
-          res.status(400);
+          return res.status(400);
         }
       });
     } else {
       console.log(err);
-      res.status(400);
+      return res.status(400);
     }
   });
 })

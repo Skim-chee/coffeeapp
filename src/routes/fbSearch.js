@@ -15,6 +15,9 @@ router.post('/fbSearch', (req, res) => {
 
   // Gets first part of name to prevent name mismatches between yelp and graphAPI
   let name = req.body.data.name.split(" ")[0];
+  if (name.toLowerCase() == "cafe") {
+    name = req.body.data.name.split(" ")[1];
+  }
   let coords = req.body.data.coords;
   let imageURLS = [];
 

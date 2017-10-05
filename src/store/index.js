@@ -18,7 +18,7 @@ function getPosition (callback) {
     function (position) {
       var coords = position.coords.latitude + "," + position.coords.longitude;
       callback(coords);
-    }, getDenied, {maximumAge: Infinity}
+    }, getDenied, {maximumAge: Infinity, timeout: 10000}
   )
 }
 
@@ -78,7 +78,8 @@ const store = new Vuex.Store({
     createPersistedState({
       Storage: {
         getItem: key => Cookies.get(key),
-        setItem: (key, value) => Cookies.set(key, value, { expires: 3, secure: true })
+        setItem: (key, value) => Cookies.set(key, value, { expires: 3, secure: true }),
+        removeItem: key => Cookies.remove(key)
       }
     })
   ]

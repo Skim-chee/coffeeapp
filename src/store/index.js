@@ -24,7 +24,7 @@ function getPosition (callback) {
     function (position) {
       var coords = position.coords.latitude + "," + position.coords.longitude;
       callback(coords);
-    }, getDenied, getOptions
+    }, getDenied, geoOptions
   )
 }
 

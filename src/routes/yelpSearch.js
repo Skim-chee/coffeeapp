@@ -70,7 +70,7 @@ router.post('/yelpSearch', (req, res) => {
   // If stay, shows radius of 100m, otherwise 6 miles
   if (stay) {
     let randRad = randomGenerator(3);
-    rad = 250 + (125*randRad);
+    rad = 1250 + (125*randRad);
   } else {
     rad = 9000;
     if (query = "coffee, wifi, outlets, study") {

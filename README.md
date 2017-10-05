@@ -1,21 +1,26 @@
 # The City That Never Sleeps
+A simple coffee finding app for NY residents
 
-> A simple coffee finding app for NY residents
 
-## Build Setup
+----------
 
-``` bash
-# install dependencies
-npm install
 
-# serve with hot reload at localhost:8080
-npm run dev
+![Pic of Webapp](https://i.imgur.com/IIfNIFN.jpg)
 
-# build for production with minification
-npm run build
+##Overview
+----------
+This is a simple Vue web app that looks at the experience of making decisions. 
 
-# build for production and view the bundle analyzer report
-npm run build --report
-```
+It is powered with API calls to a combination of Yelp and FB, but is hidden behind simple logic to make the experience more akin to receiving a recommendation from a friend. 
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+Based on options picked: 
+
+- Changes query of yelp search
+- Changes location of search
+- Changes radius of search
+- Changes how randomly cafe is picked
+
+![Pic of results](https://i.imgur.com/7MQIPBU.png)
+
+
+

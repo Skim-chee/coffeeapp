@@ -1,10 +1,6 @@
 # The City That Never Sleeps
 A simple coffee finding app for NY residents
 
-
-----------
-
-
 ![Pic of Webapp](https://i.imgur.com/IIfNIFN.jpg)
 
 ##Overview

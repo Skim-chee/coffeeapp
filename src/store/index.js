@@ -13,12 +13,18 @@ function getDenied (err) {
 
 // Gets users position using html5 geolocater
 // returns var coords through callback
+let geoOptions = {
+  enableHighAccuracy: true,
+  maximumAge        : Infinity,
+  timeout           : 10000
+}
+
 function getPosition (callback) {
   navigator.geolocation.getCurrentPosition(
     function (position) {
       var coords = position.coords.latitude + "," + position.coords.longitude;
       callback(coords);
-    }, getDenied, {maximumAge: Infinity, timeout: 10000}
+    }, getDenied, getOptions
   )
 }
 

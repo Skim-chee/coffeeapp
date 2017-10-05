@@ -78,6 +78,7 @@ export default {
       }
       // Resets coordinates for Go -> Stay case
       this.updateCoords("");
+
       if (this.$data.optionTwo == "Stay") {
         optTwo = "Stay";
         // Makes a call to getNew function for server request

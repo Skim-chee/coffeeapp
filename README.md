@@ -3,7 +3,7 @@ A simple coffee finding app for NY residents
 
 ![Pic of Webapp](https://i.imgur.com/IIfNIFN.jpg)
 
-##Overview
+## Overview
 ----------
 This is a simple Vue web app that looks at the experience of making decisions. 
 
